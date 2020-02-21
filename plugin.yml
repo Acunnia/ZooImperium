@@ -1,0 +1,7 @@
+name: ZooImperium
+main: es.elzoo.zooimperium.ZooImperium
+author: ElZoo
+website: https://elzoo.es
+version: 1.0.0
+depend:
+api-version: 1.15
