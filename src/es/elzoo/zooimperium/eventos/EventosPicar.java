@@ -1,17 +1,20 @@
 package es.elzoo.zooimperium.eventos;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 
 public class EventosPicar implements Listener {
-	public void BlockBreakEvent(Block block, Player player) {
-		Bukkit.getLogger().info("El plugin ha sido cargado");	
-		if (block.getBlockData().getMaterial().equals(Material.STONE)){
-			block.setType(Material.BEDROCK);
-		}
-		return;		
-	}
+    @EventHandler
+    public static void onBlockBreak(BlockBreakEvent event) {
+        Block block = event.getBlock();
+        if (block.getBlockData().getMaterial().equals(Material.STONE)){
+            event.setCancelled(true);
+//            block.getDrops();
+            block.getLocation().getBlock().setType(Material.BEDROCK);
+        }
+        return;
+    }
 }
