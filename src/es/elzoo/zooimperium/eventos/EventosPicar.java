@@ -1,6 +1,7 @@
 package es.elzoo.zooimperium.eventos;
 
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -14,8 +15,12 @@ import es.elzoo.zooimperium.ZooImperium;
 public class EventosPicar implements Listener {
     @EventHandler
     public static void onBlockBreak(BlockBreakEvent event) {
+        Player player = event.getPlayer(); 
+        if(player.getGameMode().equals(GameMode.CREATIVE)) {
+        	return;
+        }
+        
         Block block = event.getBlock();											// GUARDAMOS EL BLOQUE Y EL JUGADOR DEL EVENTO
-        Player player = event.getPlayer();
         
         ItemStack drop;															// INSTANCIAMOS UN ITEM DE INVENTARIO VACIO
         
@@ -36,7 +41,7 @@ public class EventosPicar implements Listener {
             block.getLocation().getBlock().setType(Material.BEDROCK);	
             Bukkit.getScheduler().runTaskLater(ZooImperium.pl, () -> {		
                 block.getLocation().getBlock().setType(Material.STONE);	
-            }, 20L);	
+            }, 100L);	
         }
         return;
     }
