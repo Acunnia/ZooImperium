@@ -9,10 +9,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
-
-import es.elzoo.zooimperium.ZooImperium;
+import org.bukkit.plugin.Plugin;
 
 public class EventosPicar implements Listener {
+	public static Plugin plugin = Bukkit.getPluginManager().getPlugin("ZooImperium");
     @EventHandler
     public static void onBlockBreak(BlockBreakEvent event) {
         Player player = event.getPlayer(); 
@@ -29,7 +29,7 @@ public class EventosPicar implements Listener {
 			player.getWorld().dropItemNaturally(block.getLocation(), drop);		// DROPEA EL COSO EN LA POSICION DEL BLOQUE
         	event.setCancelled(true);											// CANCELA EL EVENTO DE PICAR
             block.getLocation().getBlock().setType(Material.COBBLESTONE);			// COLOCA BEDROCK EN EL BLOQUE PICADO
-            Bukkit.getScheduler().runTaskLater(ZooImperium.pl, () -> {			// PREPARA UNA TAREA FUTURA, NECESITA COMO PARAMETRO EL PLUGIN
+            Bukkit.getScheduler().runTaskLater(plugin, () -> {				// PREPARA UNA TAREA FUTURA, NECESITA COMO PARAMETRO EL PLUGIN
             	if (block.getBlockData().getMaterial().equals(Material.COBBLESTONE)) {
 					block.getLocation().getBlock().setType(Material.STONE);
 				}																// ACCION DE LA TAREA FUTURA (PONER EL BLOQUE ORIGINAL)
@@ -39,7 +39,7 @@ public class EventosPicar implements Listener {
 			player.getWorld().dropItemNaturally(block.getLocation(), drop);		
         	event.setCancelled(true);										
             block.getLocation().getBlock().setType(Material.BEDROCK);	
-            Bukkit.getScheduler().runTaskLater(ZooImperium.pl, () -> {		
+            Bukkit.getScheduler().runTaskLater(plugin, () -> {		
                 block.getLocation().getBlock().setType(Material.STONE);	
             }, 100L);	
         }
