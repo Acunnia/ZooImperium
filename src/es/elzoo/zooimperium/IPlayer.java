@@ -118,7 +118,7 @@ public class IPlayer {
 		}
 		
 		player.getActivePotionEffects().stream().forEach(pt -> player.removePotionEffect(pt.getType()));
-		IPlayer ip = new IPlayer(nick, 0, 0, 0, 0);
+		IPlayer ip = new IPlayer(nick, 1, 0, 0, 0);
 		players.add(ip);
 
 		

@@ -15,6 +15,11 @@ public class Cofre {
 	private static Plugin plugin = Bukkit.getPluginManager().getPlugin("ZooImperium");
 	public static List<Cofre> listaCofres = new ArrayList<Cofre>();
 	
+	private static List<ItemStack> tier0 = Arrays.asList(new ItemStack(Material.BREAD, 1),new ItemStack(Material.BREAD, 2),
+			new ItemStack(Material.BREAD, 3),new ItemStack(Material.WHEAT, 1),new ItemStack(Material.WHEAT, 2),
+			new ItemStack(Material.WHEAT, 3),new ItemStack(Material.MELON_SLICE, 2),new ItemStack(Material.MELON_SLICE, 5),
+			new ItemStack(Material.MELON_SLICE, 4));
+	
 	private Location location;
 	private List<ItemStack> items;
 	private int estado;
@@ -39,8 +44,26 @@ public class Cofre {
 	}
 	
 	private static void addCofre(Location loc) {
-		Cofre nuevo = new Cofre(loc, Arrays.asList(new ItemStack(Material.OAK_WOOD, 2),new ItemStack(Material.OAK_WOOD, 2),new ItemStack(Material.OAK_WOOD, 2),new ItemStack(Material.OAK_WOOD, 2),new ItemStack(Material.OAK_WOOD, 2),new ItemStack(Material.OAK_WOOD, 2),new ItemStack(Material.OAK_WOOD, 2),new ItemStack(Material.OAK_WOOD, 2),new ItemStack(Material.OAK_WOOD, 2),new ItemStack(Material.OAK_WOOD, 2),new ItemStack(Material.OAK_WOOD, 2),new ItemStack(Material.OAK_WOOD, 2),new ItemStack(Material.OAK_WOOD, 2),new ItemStack(Material.OAK_WOOD, 2),new ItemStack(Material.OAK_WOOD, 2),new ItemStack(Material.OAK_WOOD, 2),new ItemStack(Material.OAK_WOOD, 2),new ItemStack(Material.OAK_WOOD, 2),new ItemStack(Material.OAK_WOOD, 2),new ItemStack(Material.OAK_WOOD, 2)));
+		Cofre nuevo = new Cofre(loc, aleatorizarItems());
 		listaCofres.add(nuevo);
+	}
+	
+	private static List<ItemStack> aleatorizarItems() {
+		List<ItemStack> lista = Arrays.asList(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+		int aciertos = 0;
+		int slots =(int) (Math.random() * 11);
+		while(aciertos < slots) {
+			int pos =(int) (Math.random() * 20);
+			if(lista.get(pos) == null && pos != 20) {
+				int item =(int) (Math.random() * 9);
+				if(item != 9) {
+					ItemStack nuevo = tier0.get(item);
+					lista.set(pos, nuevo);
+					aciertos++;
+				}
+			}	
+		}
+		return lista;
 	}
 	
 	private Cofre(Location loc, List<ItemStack> items) {
