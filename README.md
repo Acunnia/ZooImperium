@@ -1,2 +1,2 @@
-# ZooMazmorras
-Plugin de mazmorras para ElZoo
+# ZooImperium
+Minijuego PVP inspirado en escape from Tarkov
