@@ -7,9 +7,11 @@ import java.sql.PreparedStatement;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import es.elzoo.zooimperium.cofres.EventosCofres;
 import es.elzoo.zooimperium.eventos.EventosItems;
 import es.elzoo.zooimperium.eventos.EventosPicar;
 import es.elzoo.zooimperium.eventos.EventosPlayer;
+import es.elzoo.zooimperium.utiles.gui.GUIEventos;
 
 public class ZooImperium extends JavaPlugin {
 	static String url;
@@ -47,6 +49,8 @@ public class ZooImperium extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new EventosPicar(), this); // PREPARA AL SERVIDOR PARA LEER LOS EVENTOS DE EventosPicar
 		getServer().getPluginManager().registerEvents(new EventosItems(), this);
 		getServer().getPluginManager().registerEvents(new EventosPlayer(), this);
+		getServer().getPluginManager().registerEvents(new GUIEventos(), this);
+		getServer().getPluginManager().registerEvents(new EventosCofres(), this);
 		
 		Bukkit.getLogger().info("El plugin ha sido cargado");	// MUESTRA POR CONSOLA QUE EL PLUGIN SE HA CARGADO CON EXITO
 	}
