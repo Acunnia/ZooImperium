@@ -3,6 +3,7 @@ Minijuego PVP inspirado en escape from Tarkov
 
 
 Ejemplo de chests.json
+
     {
         "0": {
     	    "tipo": "COMIDA",
