@@ -59,6 +59,8 @@ public class ZooImperium extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new GUIEventos(), this);
 		getServer().getPluginManager().registerEvents(new EventosCofres(), this);
 		
+		RegistroCofres.generarTodos();
+		
 		Bukkit.getLogger().info("El plugin ha sido cargado");	// MUESTRA POR CONSOLA QUE EL PLUGIN SE HA CARGADO CON EXITO
 	}
 	
