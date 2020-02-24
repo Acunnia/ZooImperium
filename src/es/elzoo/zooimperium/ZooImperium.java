@@ -8,6 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import es.elzoo.zooimperium.cofres.EventosCofres;
+import es.elzoo.zooimperium.cofres.RegistroCofres;
 import es.elzoo.zooimperium.eventos.EventosItems;
 import es.elzoo.zooimperium.eventos.EventosPicar;
 import es.elzoo.zooimperium.eventos.EventosPlayer;
@@ -19,8 +20,12 @@ public class ZooImperium extends JavaPlugin {
 	static String pass;
 	private static Connection conexion;
 	
+	public static String RUTA = "";
+	
 	@Override
 	public void onEnable() {
+		RUTA = this.getDataFolder().getAbsolutePath();
+		
 		getConfig().addDefault("database", "database");
 		getConfig().addDefault("user", "username");
 		getConfig().addDefault("pass", "password");
@@ -40,6 +45,8 @@ public class ZooImperium extends JavaPlugin {
 			Bukkit.getLogger().info("Conexión establecida.");
 			
 			IPlayer.cargarDatos();
+			
+			RegistroCofres.cargarDatos();
 			
 		} catch(Exception e) {
 			e.printStackTrace();
