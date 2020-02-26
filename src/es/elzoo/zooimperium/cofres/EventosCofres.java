@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 public class EventosCofres implements Listener {
 	@EventHandler
 	public void onPlayerInteract(PlayerInteractEvent e) {
-		if (e.getAction() != Action.RIGHT_CLICK_BLOCK || e.getClickedBlock().getType() != Material.CHEST) {
+		if (Cofre.isLooteable(e.getClickedBlock().getLocation())==false|| e.getAction() != Action.RIGHT_CLICK_BLOCK || e.getClickedBlock().getType() != Material.CHEST) {
 			return;
 		}
 		e.setCancelled(true);

@@ -7,8 +7,8 @@ import java.sql.PreparedStatement;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import es.elzoo.zooimperium.cofres.Cofre;
 import es.elzoo.zooimperium.cofres.EventosCofres;
-import es.elzoo.zooimperium.cofres.RegistroCofres;
 import es.elzoo.zooimperium.eventos.EventosItems;
 import es.elzoo.zooimperium.eventos.EventosPicar;
 import es.elzoo.zooimperium.eventos.EventosPlayer;
@@ -46,7 +46,7 @@ public class ZooImperium extends JavaPlugin {
 			
 			IPlayer.cargarDatos();
 			
-			RegistroCofres.cargarDatos();
+			Cofre.cargarDatos();
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -59,7 +59,7 @@ public class ZooImperium extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new GUIEventos(), this);
 		getServer().getPluginManager().registerEvents(new EventosCofres(), this);
 		
-		RegistroCofres.generarTodos();
+		Cofre.generarTodos();
 		
 		Bukkit.getLogger().info("El plugin ha sido cargado");	// MUESTRA POR CONSOLA QUE EL PLUGIN SE HA CARGADO CON EXITO
 	}
