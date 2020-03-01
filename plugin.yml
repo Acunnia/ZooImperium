@@ -5,3 +5,7 @@ website: https://elzoo.es
 version: 1.0.0
 depend:
 api-version: 1.15
+commands:
+  zooec:
+    description: Abre el enderchest
+    usage: "Usage: /zooec"

@@ -9,9 +9,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import es.elzoo.zooimperium.cofres.Cofre;
 import es.elzoo.zooimperium.cofres.EventosCofres;
+import es.elzoo.zooimperium.enderchest.ComandoEnderchest;
+import es.elzoo.zooimperium.enderchest.Enderchest;
 import es.elzoo.zooimperium.eventos.EventosItems;
 import es.elzoo.zooimperium.eventos.EventosPicar;
 import es.elzoo.zooimperium.eventos.EventosPlayer;
+import es.elzoo.zooimperium.npc.EventosNPC;
 import es.elzoo.zooimperium.utiles.gui.GUIEventos;
 
 public class ZooImperium extends JavaPlugin {
@@ -48,6 +51,8 @@ public class ZooImperium extends JavaPlugin {
 			
 			Cofre.cargarDatos();
 			
+			Enderchest.cargarDatos();
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 			Bukkit.getServer().shutdown();
@@ -58,6 +63,9 @@ public class ZooImperium extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new EventosPlayer(), this);
 		getServer().getPluginManager().registerEvents(new GUIEventos(), this);
 		getServer().getPluginManager().registerEvents(new EventosCofres(), this);
+		getServer().getPluginManager().registerEvents(new EventosNPC(), this);
+		
+		getCommand("zooec").setExecutor(new ComandoEnderchest());	
 		
 		Cofre.generarTodos();
 		
@@ -66,8 +74,10 @@ public class ZooImperium extends JavaPlugin {
 	
 	private void crearTablas() throws Exception {
 		PreparedStatement t1 = conexion.prepareStatement("CREATE TABLE IF NOT EXISTS zooImperium_player(nick varchar(64) UNIQUE, nivel int, experiencia double, rango int, dinero int);");
-
-		PreparedStatement[] stmts = new PreparedStatement[] {t1};
+		PreparedStatement t2 = conexion.prepareStatement("CREATE TABLE IF NOT EXISTS zooImperium_subasta(id int PRIMARY KEY auto_increment, nick varchar(64), item text, fecha timestamp DEFAULT current_timestamp, pujas text);");
+		PreparedStatement t3 = conexion.prepareStatement("CREATE TABLE IF NOT EXISTS zooImperium_enderchest(nick varchar(64) UNIQUE, items text, nivel int);");
+		
+		PreparedStatement[] stmts = new PreparedStatement[] {t1, t2, t3};
 		
 		for(PreparedStatement stmt : stmts) {
 			stmt.executeUpdate();
