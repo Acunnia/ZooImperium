@@ -363,4 +363,8 @@ public class IPlayer {
 		}
 		this.rango = rango;
 	}
+
+	public void darDinero(int i) {
+		this.dinero += i;
+	}
 }

@@ -9,3 +9,6 @@ commands:
   zooec:
     description: Abre el enderchest
     usage: "Usage: /zooec"
+  dinero:
+    description: Devuelve el dinero del jugador
+    usage: "Usage: /dinero"

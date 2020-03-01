@@ -6,6 +6,7 @@ import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.inventory.EquipmentSlot;
 
 import es.elzoo.zooimperium.npc.npc.subasta.NPCSubasta;
+import es.elzoo.zooimperium.npc.npc.tiendas.NPCTiendaMateriales;
 
 public class EventosNPC implements Listener{
 	@EventHandler(ignoreCancelled=true)
@@ -18,12 +19,12 @@ public class EventosNPC implements Listener{
 			return;
 		}
 		
-		String nombre = event.getRightClicked().getName();
+		String nombre = event.getRightClicked().getName();	
 		
 		if(nombre.contains("Gestor")) {
 			NPCSubasta.abrirInterfazMain(event.getPlayer());
-		} else if(nombre.contains("Vendedor de materiales")) {
-			// TODO: TIENDAS
+		} else if(nombre.contains("materiales")) {
+			NPCTiendaMateriales.abrirInterfaz(event.getPlayer());
 		} else if(nombre.contains("Vendedor de comida")) {
 			
 		} else if(nombre.contains("Vendedor de cultivos")) {

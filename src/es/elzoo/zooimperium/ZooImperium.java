@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import es.elzoo.zooimperium.cofres.Cofre;
@@ -15,6 +16,7 @@ import es.elzoo.zooimperium.eventos.EventosItems;
 import es.elzoo.zooimperium.eventos.EventosPicar;
 import es.elzoo.zooimperium.eventos.EventosPlayer;
 import es.elzoo.zooimperium.npc.EventosNPC;
+import es.elzoo.zooimperium.utiles.ComandoDinero;
 import es.elzoo.zooimperium.utiles.gui.GUIEventos;
 
 public class ZooImperium extends JavaPlugin {
@@ -65,7 +67,18 @@ public class ZooImperium extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new EventosCofres(), this);
 		getServer().getPluginManager().registerEvents(new EventosNPC(), this);
 		
-		getCommand("zooec").setExecutor(new ComandoEnderchest());	
+		getCommand("zooec").setExecutor(new ComandoEnderchest());
+		getCommand("dinero").setExecutor(new ComandoDinero());
+		
+		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> {
+			ImperiumScoreboard.estado++;
+			if (estado == ) {
+				
+			}
+			for (Player pl : Bukkit.getOnlinePlayers()) {
+				ImperiumScoreboard.setScoreBoard(pl);
+			}
+		}, 20, 20);
 		
 		Cofre.generarTodos();
 		

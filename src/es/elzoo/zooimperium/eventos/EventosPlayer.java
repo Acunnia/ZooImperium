@@ -13,6 +13,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.Plugin;
 
 import es.elzoo.zooimperium.IPlayer;
+import es.elzoo.zooimperium.ImperiumScoreboard;
 
 public class EventosPlayer implements Listener {
 	public static Plugin plugin = Bukkit.getPluginManager().getPlugin("ZooImperium");
@@ -31,6 +32,7 @@ public class EventosPlayer implements Listener {
 		if(!optIP.isPresent()) {
 			IPlayer.crearPlayer(event.getPlayer());
 		}
+		ImperiumScoreboard.setScoreBoard(event.getPlayer());
 	}
 		
 	//Guardar los stats del jugador al desconectarse
