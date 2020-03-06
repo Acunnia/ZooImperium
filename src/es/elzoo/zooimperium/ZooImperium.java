@@ -72,13 +72,14 @@ public class ZooImperium extends JavaPlugin {
 		
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> {
 			ImperiumScoreboard.estado++;
-			if (estado == ) {
-				
+			
+			if (ImperiumScoreboard.estado > ImperiumScoreboard.carteles.size()-1) {
+				ImperiumScoreboard.estado = 0;
 			}
 			for (Player pl : Bukkit.getOnlinePlayers()) {
 				ImperiumScoreboard.setScoreBoard(pl);
 			}
-		}, 20, 20);
+		}, 5, 5);
 		
 		Cofre.generarTodos();
 		
