@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -16,6 +17,7 @@ import es.elzoo.zooimperium.eventos.EventosItems;
 import es.elzoo.zooimperium.eventos.EventosPicar;
 import es.elzoo.zooimperium.eventos.EventosPlayer;
 import es.elzoo.zooimperium.npc.EventosNPC;
+import es.elzoo.zooimperium.salidas.Salidas;
 import es.elzoo.zooimperium.utiles.ComandoDinero;
 import es.elzoo.zooimperium.utiles.gui.GUIEventos;
 
@@ -55,6 +57,8 @@ public class ZooImperium extends JavaPlugin {
 			
 			Enderchest.cargarDatos();
 			
+			Salidas.addSalida("Asentamiento minero",new Location(Bukkit.getWorlds().get(0), 100, 100, 100));
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 			Bukkit.getServer().shutdown();
@@ -80,6 +84,10 @@ public class ZooImperium extends JavaPlugin {
 				ImperiumScoreboard.setScoreBoard(pl);
 			}
 		}, 5, 5);
+		
+		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> {
+			Salidas.listaSalidas.parallelStream().forEach(s -> s.tickSalida());
+		}, 20, 20);
 		
 		Cofre.generarTodos();
 		
